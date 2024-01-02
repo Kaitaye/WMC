@@ -6,21 +6,9 @@ var fullImg = document.getElementById("fullImg");
 var nextImage = document.getElementById("next");
 var prevImage = document.getElementById("prev");
 
-function openFullImg(pic, index) {
-  var currentIndex = index;
+function openFullImg(pic) {
   fullImgBox.style.display = "flex";
   fullImg.src = pic;
-
-  // Update nextImage and prevImage click handlers
-  nextImage.onclick = function () {
-    currentIndex = (currentIndex % numberOfImages) + 1;
-    fullImg.src = "./img/gallery/" + currentIndex + ".jpg";
-  };
-
-  prevImage.onclick = function () {
-    currentIndex = ((currentIndex - 2 + numberOfImages) % numberOfImages) + 1;
-    fullImg.src = "./img/gallery/" + currentIndex + ".jpg";
-  };
 }
 
 function closeFullImg() {
@@ -49,3 +37,17 @@ for (var i = 1; i <= numberOfImages; i++) {
 
   container.appendChild(imgElement);
 }
+
+var currentIndex = 1; // Local variable to track the current index
+
+nextImage.onclick = function () {
+  currentIndex = (currentIndex % numberOfImages) + 1;
+  fullImgBox.style.display = "flex";
+  fullImg.src = "./img/gallery/" + currentIndex + ".jpg";
+};
+
+prevImage.onclick = function () {
+  currentIndex = ((currentIndex - 2 + numberOfImages) % numberOfImages) + 1;
+  fullImgBox.style.display = "flex";
+  fullImg.src = "./img/gallery/" + currentIndex + ".jpg";
+};
